@@ -8,23 +8,19 @@
  */
 import { renderHome } from './views/home.js';
 import { renderStory } from './views/story.js';
-import { renderOffice } from './views/office.js';
 import { mountPlayer } from './ui/player.js';
 import { startAmbient } from './ui/ambient.js';
 import { logoSVG } from './ui/logo.js';
-import { config } from '../data/config.js';
+import { config } from './data.js';
 
-const routes = { home: renderHome, story: renderStory, office: renderOffice };
+const routes = { home: renderHome, story: renderStory };
 
 const view = document.getElementById('view');
 const head = document.getElementById('site-head');
 
 function current() {
   const name = location.hash.replace(/^#\/?/, '');
-  if (name && routes[name]) return name;
-  // the studio lives at its own clean path: daraleakhena.com/studio
-  if (location.pathname.replace(/\/+$/, '').endsWith('/studio')) return 'office';
-  return 'home';
+  return name && routes[name] ? name : 'home';
 }
 
 function navigate(name) {

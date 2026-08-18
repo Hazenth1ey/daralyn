@@ -3,8 +3,7 @@
  * Each chapter cues its own track as it enters the viewport, so the
  * soundtrack follows the reader through the day.
  */
-import { chapters } from '../../data/chapters.js';
-import { config } from '../../data/config.js';
+import { chapters, config, mdLite } from '../data.js';
 import { engine } from '../audio/engine.js';
 
 function photoCell(p) {
@@ -41,7 +40,7 @@ export function renderStory(mount) {
             <p class="ch-index">${c.index} · ${c.time}</p>
             <h3 class="ch-title">${c.title}</h3>
             <p class="ch-line">${c.line}</p>
-            <p class="ch-body">${c.body}</p>
+            <div class="ch-body">${mdLite(c.body)}</div>
           </div>
           <div class="ch-photos">
             ${c.photos.map(photoCell).join('')}

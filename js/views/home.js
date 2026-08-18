@@ -2,7 +2,7 @@
  * The portal. The whole screen is the door: one press starts the music
  * and opens the retrospective.
  */
-import { config } from '../../data/config.js';
+import { config } from '../data.js';
 import { engine } from '../audio/engine.js';
 import { logoSVG } from '../ui/logo.js';
 

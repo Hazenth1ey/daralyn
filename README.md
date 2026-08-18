@@ -20,7 +20,7 @@ python3 -m http.server 8000
 | --- | --- |
 | **Portal** (`#/`) | The monogram over a starfield; the whole screen is the door into the day. |
 | **Retrospective** (`#/story`) | The wedding day as scroll-stopped chapters. As each chapter enters the viewport it *cues its own track* — the soundtrack follows the reader through the day. A rail on the right tracks where you are. |
-| **The Studio** (`/studio`) | The couple's back room — not linked anywhere on the site. Behind a passphrase (`officePass` in `data/config.js`; client-side only, not real security): the five-fader mixing desk over the generative score, the visualiser, and the guest wall with moderation. |
+| **The Studio** (`/studio`) | The back office — a real CMS. Sign in with GitHub (via the shared OAuth worker); edit chapters in a rich editor, upload photos and audio, reorder the soundtrack, and update the site's names/date/epigraph. Every publish is a git commit that auto-deploys. |
 
 The **music toggle is a capsule** in the bottom-right corner of every
 view — closed, a quiet circle; open, it reveals the track list,
@@ -42,16 +42,14 @@ redrawn as inline SVG in `js/ui/logo.js` with a self-hosted script font
 
 ## Making it yours
 
-Everything you'd want to edit lives in `data/`:
+Use the Studio at `/studio` — or edit the JSON in `data/` directly:
 
-- **`data/config.js`** — names, date, place, epigraph.
-- **`data/chapters.js`** — the chapters of the day: titles, times, text, and
-  photos. Drop images into `media/photos/` and set each photo's `src`.
-  Photos with `src: null` render as empty frames.
-- **`data/tracks.js`** — the playlist. Drop audio into `media/audio/` and set
-  each track's `src` to switch from the generative synth to the real song.
-  `chapter` links a track to a chapter; `mood` picks the synth fallback and
-  the accent colour.
+- **`data/site.json`** — names, date, place, epigraph.
+- **`data/chapters.json`** — the chapters of the day: titles, times, text
+  (markdown-lite), and photos (`media/photos/`).
+- **`data/tracks.json`** — the playlist. A track with `src: null` plays the
+  generative synth in its `mood`; give it a file in `media/audio/` to play
+  the real song. `chapter` links a track to a chapter.
 
 ## Layout
 

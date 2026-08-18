@@ -525,6 +525,8 @@ a { color: var(--glow); }
 .ch-title { font-size: clamp(1.8rem, 3.6vw, 2.5rem); color: var(--ink); margin: 0.7rem 0 1rem; }
 .ch-line { font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--ink-dim); margin-bottom: 1rem; }
 .ch-body { font-size: 0.95rem; color: var(--ink-faint); max-width: 44ch; }
+.ch-body p { color: inherit; }
+.ch-body p + p { margin-top: 0.9rem; }
 
 .ch-photos {
   display: grid;

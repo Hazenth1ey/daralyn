@@ -7,7 +7,7 @@
  * synth when no file exists yet.
  */
 import { GenerativeSynth, LAYERS, moodOf } from './synth.js';
-import { tracks } from '../../data/tracks.js';
+import { tracks } from '../data.js';
 
 const SYNTH_TRACK_LENGTH = 150; // seconds shown for generative tracks
 

@@ -1,46 +1,189 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dara &amp; Leakhena — A Wedding Retrospective</title>
-  <meta name="description" content="An interactive retrospective of our wedding day — with its own soundtrack.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/main.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>♫</text></svg>">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="robots" content="noindex" />
+  <title>Studio — Dara &amp; Leakhena</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>♫</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <!-- Rich Markdown editor — served from this site so no blocker or CDN
+       outage can take the writing tool away -->
+  <link rel="stylesheet" href="/studio/vendor/toastui-editor.css?v=1" />
+  <link rel="stylesheet" href="/studio/vendor/toastui-editor-dark.css?v=1" />
+  <link rel="stylesheet" href="/studio/studio.css?v=1" />
   <script>
-    // apply the saved theme before first paint to avoid a flash
-    try {
-      const t = localStorage.getItem('dl-theme');
-      if (t) document.documentElement.dataset.theme = t;
-    } catch {}
+    try { document.documentElement.dataset.theme = localStorage.getItem("dl_studio_theme") || "dark"; } catch (e) {}
   </script>
 </head>
-<body data-view="office">
-  <canvas id="ambient" aria-hidden="true"></canvas>
-  <div class="atmosphere" aria-hidden="true">
+<body>
+  <div class="studio-bg" aria-hidden="true">
+    <div class="glow glow-a"></div>
+    <div class="glow glow-b"></div>
     <div class="grain"></div>
-    <div class="vignette"></div>
   </div>
 
-  <button class="site-theme-toggle" id="theme-toggle" aria-label="Toggle day and night" title="day / night">
-    <svg class="st-icon st-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-      <circle cx="12" cy="12" r="4.2"/>
-      <path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.4 5.4l1.7 1.7M16.9 16.9l1.7 1.7M18.6 5.4l-1.7 1.7M7.1 16.9l-1.7 1.7"/>
-    </svg>
-    <svg class="st-icon st-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/>
-    </svg>
-  </button>
+  <!-- ===================== LOGIN ===================== -->
+  <section id="login" class="login">
+    <div class="login-card">
+      <div class="login-mark">✦</div>
+      <p class="eyebrow">the studio</p>
+      <h1>dara &amp; leakhena</h1>
+      <p class="login-sub">Sign in to tend the day.</p>
+      <button id="login-btn" class="btn btn-primary btn-lg">
+        <span class="gh-glyph">⌥</span> Sign in with GitHub
+      </button>
+      <p id="login-error" class="login-error" hidden></p>
+    </div>
+  </section>
 
-  <header class="site-head" id="site-head"></header>
+  <!-- ===================== APP ===================== -->
+  <div id="app" class="app" hidden>
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-mark">✦</span>
+        <span class="brand-name">dara &amp; leakhena<small>STUDIO</small></span>
+      </div>
 
-  <main id="view" class="view"></main>
+      <nav class="nav">
+        <button class="nav-item is-active" data-view="write">
+          <span class="nav-ico">✎</span> Write
+        </button>
+        <button class="nav-item" data-view="list">
+          <span class="nav-ico">▤</span> Chapters
+        </button>
+        <button class="nav-item" data-view="sound">
+          <span class="nav-ico">♪</span> Soundtrack
+        </button>
+        <button class="nav-item" data-view="site">
+          <span class="nav-ico">▦</span> Site
+        </button>
+      </nav>
 
-  <div id="player-root"></div>
+      <a class="nav-back" href="/">← Back to the day</a>
 
-  <script type="module" src="/js/app.js"></script>
+      <div class="user">
+        <img id="user-avatar" class="user-avatar" alt="" />
+        <div class="user-meta">
+          <strong id="user-name">…</strong>
+          <span>Author</span>
+        </div>
+        <button id="logout" class="user-logout" title="Sign out">⇥</button>
+      </div>
+    </aside>
+
+    <main class="stage">
+      <header class="topbar">
+        <div class="crumb">STUDIO <span>/</span> <em id="crumb">Write</em></div>
+        <div class="topbar-actions">
+          <span id="save-status" class="save-status"></span>
+          <button id="theme-toggle" class="btn btn-ghost theme-btn" title="Switch theme" aria-label="Switch between light and dark theme">☀</button>
+          <button id="new-btn" class="btn btn-ghost">＋ New chapter</button>
+        </div>
+      </header>
+
+      <!-- ---------- WRITE (chapter editor) ---------- -->
+      <section id="view-write" class="view view-write">
+        <div class="editor-col">
+          <div class="card">
+            <textarea id="f-title" class="input-title" rows="1" placeholder="Chapter title"></textarea>
+            <textarea id="f-line" class="input-sub" rows="1" placeholder="The line — one italic sentence under the title"></textarea>
+            <div id="editor"></div>
+          </div>
+        </div>
+
+        <aside class="organize">
+          <div class="card">
+            <h3 class="panel-title">Organize</h3>
+
+            <label class="field">
+              <span>Time of day</span>
+              <input id="f-time" placeholder="15:32" />
+            </label>
+
+            <div class="field">
+              <span>Photos</span>
+              <div id="photo-grid" class="gallery-grid"></div>
+              <div class="cover-actions" style="margin-top:0.6rem;">
+                <button id="photo-btn" class="btn btn-soft">Add photos</button>
+              </div>
+              <input type="file" id="photo-file" accept="image/*" multiple hidden />
+            </div>
+          </div>
+
+          <div class="card publish-card">
+            <button id="publish-btn" class="btn btn-primary btn-block">Publish</button>
+            <button id="delete-btn" class="btn btn-danger btn-block" hidden>Delete chapter</button>
+            <p class="muted" style="margin:0.4rem 0 0; font-size:0.72rem;">
+              Publishing commits to the site — live in about a minute.
+            </p>
+          </div>
+        </aside>
+      </section>
+
+      <!-- ---------- CHAPTERS (list) ---------- -->
+      <section id="view-list" class="view view-list" hidden>
+        <div class="card">
+          <div class="list-head">
+            <h3 class="panel-title">Chapters</h3>
+            <button class="btn btn-ghost" id="list-new">＋ New chapter</button>
+          </div>
+          <p class="muted" style="margin: -0.5rem 0 1.25rem;">
+            The day, in order. The order here is the order on the site —
+            and the soundtrack follows it.
+          </p>
+          <div id="post-list" class="post-list"><p class="muted">Loading…</p></div>
+          <button class="btn btn-primary" id="order-save" style="margin-top: 1.5rem;" hidden>Save order</button>
+        </div>
+      </section>
+
+      <!-- ---------- SOUNDTRACK ---------- -->
+      <section id="view-sound" class="view view-sound" hidden>
+        <div class="card">
+          <div class="list-head">
+            <h3 class="panel-title">Soundtrack</h3>
+            <span>
+              <button class="btn btn-ghost" id="track-synth">＋ Generative track</button>
+              <button class="btn btn-ghost" id="track-add">＋ Upload track</button>
+            </span>
+            <input type="file" id="track-file" accept="audio/*" hidden />
+          </div>
+          <p class="muted" style="margin: -0.5rem 0 1.25rem;">
+            The capsule player plays these in order. A track without a file
+            improvises in its chosen mood; link a track to a chapter and it
+            cues when that chapter scrolls into view.
+          </p>
+          <div id="track-list" class="track-list"><p class="muted">Loading…</p></div>
+          <button class="btn btn-primary" id="track-save" style="margin-top: 1.5rem;">Save soundtrack</button>
+        </div>
+      </section>
+
+      <!-- ---------- SITE ---------- -->
+      <section id="view-site" class="view view-pages" hidden>
+        <div class="card">
+          <div class="list-head"><h3 class="panel-title">The site</h3></div>
+          <div class="pg-meta">
+            <label class="field"><span>First name</span><input id="s-one" placeholder="Dara" /></label>
+            <label class="field"><span>Second name</span><input id="s-two" placeholder="Leakhena" /></label>
+          </div>
+          <div class="pg-meta">
+            <label class="field"><span>Wedding date (as shown)</span><input id="s-date" placeholder="14 February 2026" /></label>
+            <label class="field"><span>Place</span><input id="s-place" placeholder="Phnom Penh" /></label>
+          </div>
+          <label class="field"><span>Epigraph (the line on the front door)</span><input id="s-epigraph" /></label>
+        </div>
+        <div class="card publish-card" style="margin-top: 1.3rem;">
+          <button id="site-save" class="btn btn-primary btn-block">Publish changes</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="/studio/vendor/toastui-editor.min.js?v=1"></script>
+  <script src="/studio/app.js?v=1"></script>
 </body>
 </html>
