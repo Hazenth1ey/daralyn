@@ -388,8 +388,6 @@ html[data-theme="light"] .st-moon { opacity: 1; transform: none; }
    Logo mark (inline SVG; swap js/ui/logo.js for the real file)
    --------------------------------------------------------- */
 .logo-mark { color: var(--brand); overflow: visible; }
-.logo-mark text { font-family: var(--script); fill: currentColor; font-size: 118px; }
-.logo-mark .logo-l { font-size: 108px; }
 .home-logo {
   display: block;
   margin: 0 auto 1.8rem;
