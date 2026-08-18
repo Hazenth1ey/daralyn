@@ -22,8 +22,8 @@ function photoCell(p) {
 export function renderStory(mount) {
   mount.innerHTML = `
     <section class="story">
-      <header class="story-head">
-        <p class="story-over">${config.date} · ${config.place}</p>
+      <header class="story-head" data-reveal>
+        <p class="eyebrow">${config.date} · ${config.place}</p>
         <h2>The Day, In Order</h2>
         <p class="story-lede">Scroll slowly. The music knows where you are.</p>
       </header>
@@ -38,7 +38,7 @@ export function renderStory(mount) {
       ${chapters.map((c) => `
         <article class="chapter" id="ch-${c.id}" data-ch="${c.id}">
           <div class="ch-text">
-            <p class="ch-index">${c.index} — ${c.time}</p>
+            <p class="ch-index">${c.index} · ${c.time}</p>
             <h3 class="ch-title">${c.title}</h3>
             <p class="ch-line">${c.line}</p>
             <p class="ch-body">${c.body}</p>

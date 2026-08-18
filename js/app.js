@@ -1,22 +1,23 @@
 /**
- * App shell: hash router + top navigation. Views swap inside #view while the
- * player at the bottom (and the audio engine behind it) never unmounts.
+ * App shell: hash router, header, theme toggle, ambient starfield.
+ * The music capsule in the corner (and the engine behind it) never
+ * unmounts, so the soundtrack survives every navigation.
+ *
+ * Public routes: home, story. The office (#/office) exists but is not
+ * linked anywhere — it is the couple's back room.
  */
 import { renderHome } from './views/home.js';
 import { renderStory } from './views/story.js';
-import { renderStudio } from './views/studio.js';
+import { renderOffice } from './views/office.js';
 import { mountPlayer } from './ui/player.js';
-import { config } from '../data/config.js';
+import { startAmbient } from './ui/ambient.js';
 import { logoSVG } from './ui/logo.js';
+import { config } from '../data/config.js';
 
-const routes = {
-  home: renderHome,
-  story: renderStory,
-  studio: renderStudio,
-};
+const routes = { home: renderHome, story: renderStory, office: renderOffice };
 
 const view = document.getElementById('view');
-const nav = document.getElementById('nav');
+const head = document.getElementById('site-head');
 
 function current() {
   const name = location.hash.replace(/^#\/?/, '') || 'home';
@@ -30,22 +31,34 @@ function navigate(name) {
 function render() {
   const name = current();
   document.body.dataset.view = name;
+  head.style.display = name === 'home' ? 'none' : ''; // the portal is bare
   view.classList.remove('view-in');
   routes[name](view, { navigate });
   requestAnimationFrame(() => view.classList.add('view-in'));
-  nav.querySelectorAll('a').forEach((a) =>
+  head.querySelectorAll('.nav a').forEach((a) =>
     a.classList.toggle('is-active', a.dataset.route === name));
-  view.scrollTop = 0;
   window.scrollTo(0, 0);
 }
 
-nav.innerHTML = `
-  <a href="#" data-route="home" class="nav-brand" aria-label="Home">${logoSVG({ size: 40, className: 'nav-logo' })}</a>
-  <div class="nav-links">
-    <a href="#/story" data-route="story">Retrospective</a>
-    <a href="#/studio" data-route="studio">Studio</a>
-  </div>`;
+head.innerHTML = `
+  <a href="#" class="mark" aria-label="Home">
+    ${logoSVG({ size: 38 })}
+    <span>${config.couple.one.toLowerCase()} &amp; ${config.couple.two.toLowerCase()}</span>
+  </a>
+  <nav class="nav">
+    <a href="#/story" data-route="story">retrospective</a>
+  </nav>`;
+
+/* day / night */
+const themeBtn = document.getElementById('theme-toggle');
+themeBtn.addEventListener('click', () => {
+  const root = document.documentElement;
+  const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+  root.dataset.theme = next;
+  try { localStorage.setItem('dl-theme', next); } catch {}
+});
 
 window.addEventListener('hashchange', render);
+startAmbient(document.getElementById('ambient'));
 mountPlayer(document.getElementById('player-root'));
 render();

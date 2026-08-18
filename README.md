@@ -18,14 +18,16 @@ python3 -m http.server 8000
 
 | View | What it does |
 | --- | --- |
-| **Home** (`#/`) | Names, date, a drifting audio-reactive star field, and the door into the day. |
-| **Retrospective** (`#/story`) | The wedding day as scroll-stopped chapters. As each chapter enters the viewport it *cues its own track* — the soundtrack follows the reader through the day. Photo cells tilt on hover; a rail on the right tracks where you are. |
-| **Studio** (`#/studio`) | The day as a mixing desk: five faders (Strings / Keys / Low End / Room / Heartbeat) reshape the score live, a radial visualiser breathes with the mix, and guests can pin notes to The Wall. |
+| **Portal** (`#/`) | The monogram over a starfield; the whole screen is the door into the day. |
+| **Retrospective** (`#/story`) | The wedding day as scroll-stopped chapters. As each chapter enters the viewport it *cues its own track* — the soundtrack follows the reader through the day. A rail on the right tracks where you are. |
+| **The Office** (`#/office`) | The couple's back room — not linked anywhere on the site. Behind a passphrase (`officePass` in `data/config.js`; client-side only, not real security): the five-fader mixing desk over the generative score, the visualiser, and the guest wall with moderation. |
 
-A **persistent music player** is docked at the bottom of every view —
-transport, scrubber, live waveform, volume, and a slide-up track list.
-One `AudioContext` lives across the whole site, so the music never cuts
-when you change views.
+The **music toggle is a capsule** in the bottom-right corner of every
+view — closed, a quiet circle; open, it reveals the track list,
+previous/next, the drifting title, and a knob that becomes equalizer
+bars while playing. One `AudioContext` lives across the whole site, so
+the music never cuts when you change views. A day/night toggle sits in
+the top-right corner.
 
 ## The music
 

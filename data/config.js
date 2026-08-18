@@ -5,7 +5,10 @@ export const config = {
   place: '—',             // e.g. 'Phnom Penh'
   // Short line shown under the names on the opening screen.
   epigraph: 'A day we keep replaying, one track at a time.',
-  // Shown on the studio view.
+  // Passphrase for the back office at #/office (client-side only —
+  // it keeps casual visitors out, it is not real security).
+  officePass: 'ourday',
+  // Shown on the office view.
   studioNote:
     'Pull the day apart and put it back together. Move the faders, watch it breathe, leave something behind.',
 };
