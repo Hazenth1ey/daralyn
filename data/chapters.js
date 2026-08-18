@@ -1,0 +1,87 @@
+// The day, in order. Each chapter is one scroll-stop on the retrospective.
+//
+// Photos: drop files into media/photos/ and set `src`. A photo with `src: null`
+// renders as a developed-but-empty frame, so the layout is honest about what is
+// still missing instead of hiding it.
+export const chapters = [
+  {
+    id: 'morning',
+    index: '01',
+    time: '06:40',
+    title: 'Getting Ready',
+    line: 'The last morning of being asked what we were nervous about.',
+    body:
+      'Two rooms on two floors, the same playlist in both, nobody willing to admit they had been awake since four.',
+    photos: [
+      { src: null, caption: 'The dress, still on the hanger.', span: 'tall' },
+      { src: null, caption: 'Cufflinks, third attempt.' },
+      { src: null, caption: 'Mom, pretending to fix something.' },
+    ],
+  },
+  {
+    id: 'ceremony',
+    index: '02',
+    time: '15:10',
+    title: 'The Aisle',
+    line: 'Everyone stood up and we forgot every single thing we practised.',
+    body:
+      'The doors opened late because someone was still parking. It turned out not to matter at all.',
+    photos: [
+      { src: null, caption: 'The doors.', span: 'wide' },
+      { src: null, caption: 'The look back.' },
+    ],
+  },
+  {
+    id: 'vows',
+    index: '03',
+    time: '15:32',
+    title: 'The Vows',
+    line: 'Written separately. Somehow half the same sentences.',
+    body:
+      'Read off two folded pieces of paper that are now in a box in the hallway, softened at the creases.',
+    photos: [
+      { src: null, caption: 'The paper.' },
+      { src: null, caption: 'Hands, shaking, both of us.', span: 'tall' },
+    ],
+  },
+  {
+    id: 'golden',
+    index: '04',
+    time: '17:55',
+    title: 'Golden Hour',
+    line: 'The only twenty minutes of the day that belonged to nobody else.',
+    body:
+      'We walked out past the tents and the light did the thing it does maybe twice a year.',
+    photos: [
+      { src: null, caption: 'Long shadows.', span: 'wide' },
+      { src: null, caption: 'Laughing at nothing.' },
+      { src: null, caption: 'The field.' },
+    ],
+  },
+  {
+    id: 'reception',
+    index: '05',
+    time: '20:15',
+    title: 'The Floor',
+    line: 'Somebody handed the microphone to somebody they should not have.',
+    body:
+      'Speeches ran forty minutes long. The cake survived. The dance floor did not empty once.',
+    photos: [
+      { src: null, caption: 'The toast.' },
+      { src: null, caption: 'Blur, deliberate.', span: 'wide' },
+      { src: null, caption: 'Shoes, off.' },
+    ],
+  },
+  {
+    id: 'last',
+    index: '06',
+    time: '01:20',
+    title: 'Last Dance',
+    line: 'The lights came up and we stayed anyway.',
+    body:
+      'One song, an emptying room, and the specific silence of a day that has finished happening.',
+    photos: [
+      { src: null, caption: 'The room, after.', span: 'wide' },
+    ],
+  },
+];
