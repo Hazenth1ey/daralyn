@@ -7,6 +7,7 @@ import { renderStory } from './views/story.js';
 import { renderStudio } from './views/studio.js';
 import { mountPlayer } from './ui/player.js';
 import { config } from '../data/config.js';
+import { logoSVG } from './ui/logo.js';
 
 const routes = {
   home: renderHome,
@@ -39,7 +40,7 @@ function render() {
 }
 
 nav.innerHTML = `
-  <a href="#" data-route="home" class="nav-brand">${config.couple.one[0]}&amp;${config.couple.two[0]}</a>
+  <a href="#" data-route="home" class="nav-brand" aria-label="Home">${logoSVG({ size: 40, className: 'nav-logo' })}</a>
   <div class="nav-links">
     <a href="#/story" data-route="story">Retrospective</a>
     <a href="#/studio" data-route="studio">Studio</a>

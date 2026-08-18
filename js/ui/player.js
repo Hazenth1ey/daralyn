@@ -137,7 +137,7 @@ export function mountPlayer(root) {
         const y = h / 2 + v * (h / 2 - 1) * (engine.playing ? 1 : 0.15);
         i ? cctx.lineTo(x, y) : cctx.moveTo(x, y);
       }
-      cctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--glow').trim() || '#e2492b';
+      cctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--glow').trim() || '#6f9fc0';
       cctx.lineWidth = 1.2;
       cctx.globalAlpha = 0.9;
       cctx.stroke();

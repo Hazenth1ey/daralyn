@@ -5,15 +5,26 @@
    ============================================================ */
 
 :root {
-  --bg: #0c0a09;
-  --bg-2: #14100e;
-  --ink: #ece5dc;
-  --ink-dim: #9d938a;
-  --line: rgba(236, 229, 220, 0.12);
-  --glow: #e2492b; /* overwritten per-track by js */
+  --bg: #0a0d11;
+  --bg-2: #0f141b;
+  --ink: #e7edf3;
+  --ink-dim: #90a0ae;
+  --line: rgba(231, 237, 243, 0.12);
+  --brand: #6f9fc0;         /* the dusty blue from the couple's logo */
+  --glow: #6f9fc0;          /* overwritten per-track by js */
+  --script: 'Great Vibes', cursive;
   --serif: 'Cormorant Garamond', Georgia, serif;
   --sans: 'Space Grotesk', system-ui, sans-serif;
   --player-h: 64px;
+}
+
+@font-face {
+  /* self-hosted so the monogram never depends on an external fetch */
+  font-family: 'Great Vibes';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../media/fonts/great-vibes.woff2') format('woff2');
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -58,14 +69,23 @@ img { max-width: 100%; display: block; }
   z-index: 20;
   display: flex; align-items: center; justify-content: space-between;
   padding: 1.1rem 1.6rem;
-  background: linear-gradient(to bottom, rgba(12,10,9,0.85), transparent);
+  background: linear-gradient(to bottom, rgba(10,13,17,0.85), transparent);
 }
-.nav-brand {
-  font-family: var(--serif);
-  font-size: 1.35rem;
-  letter-spacing: 0.06em;
-  color: var(--glow);
-  transition: color 1.2s;
+.nav-brand { color: var(--brand); display: grid; place-items: center; }
+.nav-brand:hover { color: var(--ink); }
+
+/* ---------- logo mark ---------- */
+.logo-mark { color: var(--brand); overflow: visible; }
+.logo-mark text {
+  font-family: var(--script);
+  fill: currentColor;
+  font-size: 118px;
+}
+.logo-mark .logo-l { font-size: 108px; }
+.home-logo {
+  display: block;
+  margin: 0 auto 1.6rem;
+  filter: drop-shadow(0 0 26px color-mix(in srgb, var(--brand) 30%, transparent));
 }
 .nav-links { display: flex; gap: 1.6rem; }
 .nav-links a {
@@ -127,10 +147,10 @@ img { max-width: 100%; display: block; }
   display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
 }
 .home-names .amp {
-  font-style: italic;
-  font-size: 0.42em;
-  color: var(--glow);
-  transition: color 1.2s;
+  font-family: var(--script);
+  font-style: normal;
+  font-size: 0.5em;
+  color: var(--brand);
 }
 .home-meta {
   margin-top: 1.6rem;
@@ -149,7 +169,7 @@ img { max-width: 100%; display: block; }
   margin-inline: auto;
 }
 .home-actions { display: flex; gap: 1rem; justify-content: center; margin-top: 3rem; flex-wrap: wrap; }
-.home-hint { margin-top: 2.4rem; font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(157,147,138,0.55); }
+.home-hint { margin-top: 2.4rem; font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(144,160,174,0.55); }
 
 /* ---------- story ---------- */
 .story { max-width: 1100px; margin: 0 auto; padding: 9rem 1.6rem 4rem; }
@@ -228,7 +248,7 @@ img { max-width: 100%; display: block; }
 .cell-empty {
   height: 100%;
   display: grid; place-items: center;
-  color: rgba(157,147,138,0.35);
+  color: rgba(144,160,174,0.35);
   font-size: 1.6rem;
   background:
     linear-gradient(135deg, transparent 48%, var(--line) 49%, var(--line) 51%, transparent 52%),
@@ -240,7 +260,7 @@ img { max-width: 100%; display: block; }
   font-size: 0.66rem;
   letter-spacing: 0.12em;
   color: var(--ink-dim);
-  background: linear-gradient(to top, rgba(12,10,9,0.9), transparent);
+  background: linear-gradient(to top, rgba(10,13,17,0.9), transparent);
   opacity: 0;
   transition: opacity 0.35s;
 }
@@ -263,7 +283,7 @@ img { max-width: 100%; display: block; }
 .studio-desk {
   position: relative;
   border: 1px solid var(--line);
-  background: radial-gradient(ellipse at 50% 0%, rgba(226,73,43,0.05), transparent 60%), var(--bg-2);
+  background: radial-gradient(ellipse at 50% 0%, rgba(111,159,192,0.06), transparent 60%), var(--bg-2);
   overflow: hidden;
 }
 .studio-vis { width: 100%; height: 340px; display: block; }
@@ -347,7 +367,7 @@ img { max-width: 100%; display: block; }
 /* ---------- player ---------- */
 #player-root { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; }
 .player {
-  background: rgba(12,10,9,0.92);
+  background: rgba(10,13,17,0.92);
   backdrop-filter: blur(14px);
   border-top: 1px solid var(--line);
 }
@@ -366,7 +386,7 @@ img { max-width: 100%; display: block; }
   flex: none;
 }
 .p-btn svg { width: 17px; height: 17px; }
-.p-btn:hover { color: var(--ink); background: rgba(236,229,220,0.06); }
+.p-btn:hover { color: var(--ink); background: rgba(231,237,243,0.06); }
 .p-play {
   width: 42px; height: 42px;
   color: var(--bg);
@@ -426,7 +446,7 @@ img { max-width: 100%; display: block; }
   text-align: left;
   transition: background 0.25s;
 }
-.tl-row:hover { background: rgba(236,229,220,0.05); }
+.tl-row:hover { background: rgba(231,237,243,0.05); }
 .tl-row[data-active="true"] { color: var(--glow); }
 .tl-n { font-size: 0.66rem; color: var(--ink-dim); font-variant-numeric: tabular-nums; }
 .tl-t { font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

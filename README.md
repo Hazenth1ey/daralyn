@@ -1,4 +1,4 @@
-# Daralyn & Ivan — A Wedding Retrospective
+# Dara & Leakhena — A Wedding Retrospective
 
 An interactive retrospective of a wedding day, with its own soundtrack.
 Dark, cinematic, and fully static — no build step, no dependencies.
@@ -33,7 +33,10 @@ Every track can point at a real audio file. Until one exists, a built-in
 generative synth improvises in that track's mood (six moods: dawn, hymn,
 still, amber, pulse, ember), so the whole site is playable from day one.
 Each mood also tints the site's accent colour — the interface literally
-changes colour with the music.
+changes colour with the music. The palette is anchored to the couple's
+dusty-blue monogram (`--brand` in `css/main.css`); the monogram itself is
+redrawn as inline SVG in `js/ui/logo.js` with a self-hosted script font
+(`media/fonts/`), so it stays crisp at any size on the dark theme.
 
 ## Making it yours
 

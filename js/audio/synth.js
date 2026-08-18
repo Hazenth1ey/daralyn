@@ -16,27 +16,27 @@ const pick = (arr) => arr[(Math.random() * arr.length) | 0];
 
 export const MOODS = {
   dawn: {
-    root: 50, scale: [0, 2, 4, 7, 9], tempo: 62, tone: 1500, glow: '#e9c79c',
+    root: 50, scale: [0, 2, 4, 7, 9], tempo: 62, tone: 1500, glow: '#dfe9f2',
     levels: { pad: 0.55, keys: 0.45, bass: 0.3, air: 0.35, rhythm: 0 },
   },
   hymn: {
-    root: 48, scale: [0, 4, 7, 11, 14], tempo: 56, tone: 1200, glow: '#d8ddf0',
+    root: 48, scale: [0, 4, 7, 11, 14], tempo: 56, tone: 1200, glow: '#9fc0da',
     levels: { pad: 0.7, keys: 0.3, bass: 0.4, air: 0.25, rhythm: 0 },
   },
   still: {
-    root: 45, scale: [0, 7, 12, 19], tempo: 44, tone: 900, glow: '#cfd6cf',
+    root: 45, scale: [0, 7, 12, 19], tempo: 44, tone: 900, glow: '#6f9fc0',
     levels: { pad: 0.6, keys: 0.18, bass: 0.35, air: 0.45, rhythm: 0 },
   },
   amber: {
-    root: 53, scale: [0, 2, 5, 7, 9], tempo: 72, tone: 1800, glow: '#e2913f',
+    root: 53, scale: [0, 2, 5, 7, 9], tempo: 72, tone: 1800, glow: '#d9b06c',
     levels: { pad: 0.5, keys: 0.5, bass: 0.28, air: 0.3, rhythm: 0.12 },
   },
   pulse: {
-    root: 45, scale: [0, 3, 5, 7, 10], tempo: 112, tone: 2200, glow: '#e2492b',
+    root: 45, scale: [0, 3, 5, 7, 10], tempo: 112, tone: 2200, glow: '#e0a86e',
     levels: { pad: 0.35, keys: 0.45, bass: 0.5, air: 0.15, rhythm: 0.6 },
   },
   ember: {
-    root: 40, scale: [0, 3, 7, 10], tempo: 52, tone: 800, glow: '#b8543f',
+    root: 40, scale: [0, 3, 7, 10], tempo: 52, tone: 800, glow: '#c48f96',
     levels: { pad: 0.65, keys: 0.25, bass: 0.45, air: 0.4, rhythm: 0 },
   },
 };

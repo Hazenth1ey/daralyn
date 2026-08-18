@@ -99,7 +99,7 @@ export function renderStudio(mount) {
     ctx.clearRect(0, 0, w, h);
     const cx = w / 2, cy = h / 2;
     const base = Math.min(w, h) * 0.16;
-    const glow = getComputedStyle(document.documentElement).getPropertyValue('--glow').trim() || '#e2492b';
+    const glow = getComputedStyle(document.documentElement).getPropertyValue('--glow').trim() || '#6f9fc0';
     const spec = engine.spectrum();
     const N = 140;
 

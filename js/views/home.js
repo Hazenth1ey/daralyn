@@ -5,12 +5,14 @@
  */
 import { config } from '../../data/config.js';
 import { engine } from '../audio/engine.js';
+import { logoSVG } from '../ui/logo.js';
 
 export function renderHome(mount, { navigate }) {
   mount.innerHTML = `
     <section class="home">
       <canvas class="home-stars" aria-hidden="true"></canvas>
       <div class="home-inner">
+        ${logoSVG({ size: 168, className: "home-logo" })}
         <p class="home-over">a retrospective</p>
         <h1 class="home-names">
           <span>${config.couple.one}</span>
@@ -53,7 +55,7 @@ export function renderHome(mount, { navigate }) {
     }
     ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
     ctx.clearRect(0, 0, w, h);
-    const glow = getComputedStyle(document.documentElement).getPropertyValue('--glow').trim() || '#e2492b';
+    const glow = getComputedStyle(document.documentElement).getPropertyValue('--glow').trim() || '#6f9fc0';
 
     // audio-reactive shimmer
     const spec = engine.spectrum();
