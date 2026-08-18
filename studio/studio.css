@@ -571,3 +571,8 @@ html[data-theme="light"] .track-move button:hover:not(:disabled) { background: r
   /* toast clears the tab bar */
   .toast { bottom: calc(72px + env(safe-area-inset-bottom, 0px)); width: max-content; max-width: calc(100vw - 2rem); }
 }
+
+/* The couple's real monogram in the mark tiles: soft paper tile,
+   logo contained (not cropped) — overrides the generic img rules. */
+.brand-mark, .login-mark { background: #eef1f7; }
+.brand-mark img, .login-mark img { object-fit: contain; padding: 15%; box-sizing: border-box; }
