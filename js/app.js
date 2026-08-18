@@ -57,6 +57,12 @@ themeBtn.addEventListener('click', () => {
   try { localStorage.setItem('dl-theme', next); } catch {}
 });
 
+// the tab icon follows the logo chosen in the studio
+if (config.logo) {
+  const icon = document.querySelector('link[rel="icon"]');
+  if (icon) icon.href = config.logo;
+}
+
 window.addEventListener('hashchange', render);
 startAmbient(document.getElementById('ambient'));
 mountPlayer(document.getElementById('player-root'));

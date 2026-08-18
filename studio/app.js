@@ -614,6 +614,24 @@
     }
   }
 
+  /* ---------------- brand ---------------- */
+  const DEFAULT_LOGO = "/media/logo-icon.svg";
+
+  // The chosen logo becomes the studio's marks and the tab icon.
+  function applyBrand(logo) {
+    const src = logo || DEFAULT_LOGO;
+    document.querySelectorAll(".login-mark img, .brand-mark img").forEach((img) => (img.src = src));
+    let icon = document.querySelector('link[rel="icon"]');
+    if (!icon) {
+      icon = document.createElement("link");
+      icon.rel = "icon";
+      document.head.appendChild(icon);
+    }
+    icon.href = src;
+    const preview = $("#s-logo-preview");
+    if (preview) preview.src = src;
+  }
+
   /* ---------------- site ---------------- */
   async function loadSite() {
     try {
@@ -626,6 +644,18 @@
       $("#s-date").value = d.date || "";
       $("#s-place").value = d.place || "";
       $("#s-epigraph").value = d.epigraph || "";
+      applyBrand(d.logo);
+    } catch (e) {
+      toast(e.message, true);
+    }
+  }
+
+  async function pickLogo(file) {
+    try {
+      const url = await uploadAsset(file, "media");
+      state.site.data.logo = url;
+      applyBrand(url);
+      toast("Logo uploaded — Publish changes to make it stick.");
     } catch (e) {
       toast(e.message, true);
     }
@@ -640,6 +670,7 @@
       d.date = $("#s-date").value.trim() || "—";
       d.place = $("#s-place").value.trim() || "—";
       d.epigraph = $("#s-epigraph").value.trim();
+      if (!d.logo) d.logo = DEFAULT_LOGO;
       const content = JSON.stringify(d, null, 2) + "\n";
       const res = await putFile(CONFIG.sitePath, content, "Update site details", state.site.sha);
       state.site.sha = res.content && res.content.sha;
@@ -875,6 +906,16 @@
     $("#track-synth").addEventListener("click", addSynthTrack);
     $("#track-save").addEventListener("click", saveTracks);
     $("#site-save").addEventListener("click", saveSite);
+    $("#s-logo-btn").addEventListener("click", () => $("#s-logo-file").click());
+    $("#s-logo-file").addEventListener("change", (e) => {
+      if (e.target.files && e.target.files[0]) pickLogo(e.target.files[0]);
+      e.target.value = "";
+    });
+    $("#s-logo-reset").addEventListener("click", () => {
+      state.site.data.logo = DEFAULT_LOGO;
+      applyBrand(DEFAULT_LOGO);
+      toast("Back to the monogram — Publish changes to make it stick.");
+    });
     $("#theme-toggle").addEventListener("click", () =>
       applyTheme(currentTheme() === "light" ? "dark" : "light")
     );
@@ -883,6 +924,11 @@
   document.addEventListener("DOMContentLoaded", () => {
     wire();
     applyTheme(currentTheme());
+    // adopt the saved logo before sign-in, so even the login door wears it
+    fetch("/data/site.json", { cache: "no-cache" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => { if (d) applyBrand(d.logo); })
+      .catch(() => {});
     const saved = localStorage.getItem(TOKEN_KEY);
     if (saved) { state.token = saved; start(); }
   });

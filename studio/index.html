@@ -173,6 +173,16 @@
             <label class="field"><span>Place</span><input id="s-place" placeholder="Phnom Penh" /></label>
           </div>
           <label class="field"><span>Epigraph (the line on the front door)</span><input id="s-epigraph" /></label>
+
+          <div class="field">
+            <span>Studio logo (also the browser-tab icon)</span>
+            <img id="s-logo-preview" class="logo-preview" alt="" />
+            <div class="cover-actions" style="margin-top:0.6rem;">
+              <button id="s-logo-btn" class="btn btn-soft">Choose image</button>
+              <button id="s-logo-reset" class="btn btn-link">Reset to monogram</button>
+            </div>
+            <input type="file" id="s-logo-file" accept="image/*,.svg" hidden />
+          </div>
         </div>
         <div class="card publish-card" style="margin-top: 1.3rem;">
           <button id="site-save" class="btn btn-primary btn-block">Publish changes</button>
