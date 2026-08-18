@@ -6,12 +6,9 @@
   "assets": {
     "directory": "./"
   },
-  // Once the daraleakhena.com zone exists in your Cloudflare account
-  // (register it via Cloudflare Registrar or add it as a site), uncomment
-  // these two lines and push — Cloudflare wires up DNS + TLS automatically.
-  // "routes": [
-  //   { "pattern": "daraleakhena.com", "custom_domain": true },
-  //   { "pattern": "www.daraleakhena.com", "custom_domain": true }
-  // ],
+  "routes": [
+    { "pattern": "daraleakhena.com", "custom_domain": true },
+    { "pattern": "www.daraleakhena.com", "custom_domain": true }
+  ],
   "workers_dev": true
 }
