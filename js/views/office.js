@@ -1,6 +1,6 @@
 /**
- * The office — the couple's back room. Not linked anywhere on the site;
- * reachable only at #/office, behind a passphrase.
+ * The studio — the couple's back room. Not linked anywhere on the site;
+ * reachable at /studio (or #/office), behind a passphrase.
  *
  * NOTE: the gate is client-side and keeps casual visitors out, nothing
  * more. Anyone who reads the source can pass it. Real security needs a
@@ -25,7 +25,7 @@ function renderGate(mount) {
   mount.innerHTML = `
     <section class="office">
       <form class="gate">
-        <p class="eyebrow">the office</p>
+        <p class="eyebrow">the studio</p>
         <p class="lede" style="font-size:1.2rem; margin-top:0.8rem;">this room is ours.</p>
         <input type="password" name="pass" placeholder="the word" autocomplete="off" autofocus>
         <p class="gate-err">that isn't it</p>
@@ -51,7 +51,7 @@ function renderDesk(mount) {
   mount.innerHTML = `
     <section class="office">
       <header class="office-head">
-        <p class="eyebrow">the office</p>
+        <p class="eyebrow">the studio</p>
         <h2>Remix the Day</h2>
         <p class="story-lede">${config.studioNote}</p>
       </header>
@@ -88,7 +88,7 @@ function renderDesk(mount) {
         <div class="wall-notes"></div>
       </div>
 
-      <a class="back" href="#/story">back to the day</a>
+      <a class="back" href="/#/story">back to the day</a>
     </section>`;
 
   /* faders */

@@ -20,8 +20,11 @@ const view = document.getElementById('view');
 const head = document.getElementById('site-head');
 
 function current() {
-  const name = location.hash.replace(/^#\/?/, '') || 'home';
-  return routes[name] ? name : 'home';
+  const name = location.hash.replace(/^#\/?/, '');
+  if (name && routes[name]) return name;
+  // the studio lives at its own clean path: daraleakhena.com/studio
+  if (location.pathname.replace(/\/+$/, '').endsWith('/studio')) return 'office';
+  return 'home';
 }
 
 function navigate(name) {

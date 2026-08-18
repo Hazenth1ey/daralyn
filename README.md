@@ -20,7 +20,7 @@ python3 -m http.server 8000
 | --- | --- |
 | **Portal** (`#/`) | The monogram over a starfield; the whole screen is the door into the day. |
 | **Retrospective** (`#/story`) | The wedding day as scroll-stopped chapters. As each chapter enters the viewport it *cues its own track* — the soundtrack follows the reader through the day. A rail on the right tracks where you are. |
-| **The Office** (`#/office`) | The couple's back room — not linked anywhere on the site. Behind a passphrase (`officePass` in `data/config.js`; client-side only, not real security): the five-fader mixing desk over the generative score, the visualiser, and the guest wall with moderation. |
+| **The Studio** (`/studio`) | The couple's back room — not linked anywhere on the site. Behind a passphrase (`officePass` in `data/config.js`; client-side only, not real security): the five-fader mixing desk over the generative score, the visualiser, and the guest wall with moderation. |
 
 The **music toggle is a capsule** in the bottom-right corner of every
 view — closed, a quiet circle; open, it reveals the track list,
